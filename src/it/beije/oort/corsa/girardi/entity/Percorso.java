@@ -1,4 +1,4 @@
-package it.beije.oort.corsa.entity;
+package it.beije.oort.corsa.girardi.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -83,13 +83,6 @@ public class Percorso {
 	}
 	public void setArrivoDateTime(String arrivoDateTime) {
 		this.arrivoDateTime = arrivoDateTime;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	
