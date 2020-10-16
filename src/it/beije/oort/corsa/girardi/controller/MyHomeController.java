@@ -73,28 +73,11 @@ public class MyHomeController {
 	}
 	
 	
-//-------------------------------------------------------------------------------
-	@RequestMapping(value = "/girardi/homepage", method = RequestMethod.GET)
-	public String utente(HttpServletRequest request, Model model) {
-		if (utenteService.isThereUtenteSession(request)) {
-			
-			List<Mezzo> mezzi = new ArrayList<>();
-			mezzi = mezzoService.listaMezzi();
-			model.addAttribute("mezzi", mezzi);
-		
-			return "girardi/homepage";
-		} else
-			return "girardi/my_login";
-	}
-	
-	@RequestMapping(value = "/girardi/homepage", method = RequestMethod.POST)
-	public String utente(HttpServletRequest request, HttpServletResponse response,
-						 Utente u, Model model) {
-//		log.info("utente...");
+	@RequestMapping(value = "/girardi/passaggio", method = RequestMethod.POST)
+	public String utente(HttpServletRequest request, Utente u, Model model) {
 		Utente utente = null;
 		try {
 		Optional<Utente> user = utenteService.findByEmailAndPassword(u.getEmail(), u.getPassword());
-//		log.info(user.toString());
 		
 		utente = user.get();
 		} catch (NoSuchElementException nsee) {
@@ -115,6 +98,22 @@ public class MyHomeController {
 		}
 	}
 	
+	
+//-------------------------------------------------------------------------------
+	@RequestMapping(value = "/girardi/homepage", method = RequestMethod.GET)
+	public String utente(HttpServletRequest request, Model model) {
+		if (utenteService.isThereUtenteSession(request)) {
+			
+			List<Mezzo> mezzi = new ArrayList<>();
+			mezzi = mezzoService.listaMezzi();
+			model.addAttribute("mezzi", mezzi);
+		
+			return "girardi/homepage";
+		} else
+			return "girardi/my_login";
+	}
+
+	
 	@RequestMapping(value = "/girardi/homepage", method = RequestMethod.POST)
 	public String percorso(HttpServletRequest request, Percorso p, Model model) {
 		if (utenteService.isThereUtenteSession(request)) {
@@ -124,9 +123,9 @@ public class MyHomeController {
 			
 			try {
 				percorsoService.insert(p);
-				model.addAttribute("percorso", "Percorso registrato correttamente!");
+				model.addAttribute("errore", "Percorso registrato correttamente!");
 			} catch (IllegalArgumentException iae) {
-				model.addAttribute("percorso", "ALERT: percorso non valido.");
+				model.addAttribute("errore", "ALERT: percorso non valido.");
 			}
 			
 			return "girardi/homepage";
