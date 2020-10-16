@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,6 +83,15 @@
 	<script src="<c:url value="assets/vendor/countdowntime/countdowntime.js" />"></script>
 <!--===============================================================================================-->
 	<script src="<c:url value="assets/js/main.js" />"></script>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+>>>>>>> refs/remotes/origin/girardi
 
 </body>
 </html>
