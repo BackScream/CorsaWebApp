@@ -24,6 +24,8 @@ import it.beije.oort.corsa.girardi.entity.Utente;
 import it.beije.oort.corsa.girardi.service.UtenteService;
 import it.beije.oort.corsa.girardi.entity.Mezzo;
 import it.beije.oort.corsa.girardi.service.MezzoService;
+import it.beije.oort.corsa.girardi.entity.Percorso;
+import it.beije.oort.corsa.girardi.service.PercorsoService;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -39,6 +41,9 @@ public class MyHomeController {
 	
 	@Autowired
 	private MezzoService mezzoService;
+	
+	@Autowired
+	private PercorsoService percorsoService;
 	
 	
 	@RequestMapping(value = "/girardi/", method = RequestMethod.GET)
@@ -68,15 +73,20 @@ public class MyHomeController {
 	}
 	
 	
+//-------------------------------------------------------------------------------
 	@RequestMapping(value = "/girardi/homepage", method = RequestMethod.GET)
-	public String utente(HttpServletRequest request) {
-		if (utenteService.isThereUtenteSession(request))
+	public String utente(HttpServletRequest request, Model model) {
+		if (utenteService.isThereUtenteSession(request)) {
+			
+			List<Mezzo> mezzi = new ArrayList<>();
+			mezzi = mezzoService.listaMezzi();
+			model.addAttribute("mezzi", mezzi);
+		
 			return "girardi/homepage";
-		else
+		} else
 			return "girardi/my_login";
 	}
 	
-
 	@RequestMapping(value = "/girardi/homepage", method = RequestMethod.POST)
 	public String utente(HttpServletRequest request, HttpServletResponse response,
 						 Utente u, Model model) {
@@ -95,20 +105,42 @@ public class MyHomeController {
 			model.addAttribute("errore", "CREDENZIALI ERRATE");	
 			return "girardi/my_login";
 		} else {			
+			List<Mezzo> mezzi = new ArrayList<>();
+			mezzi = mezzoService.listaMezzi();
+			model.addAttribute("mezzi", mezzi);
+			
 			request.getSession().setAttribute("utente", utente);
 			model.addAttribute("utente", utente);	
 			return "girardi/homepage";
 		}
 	}
 	
+	@RequestMapping(value = "/girardi/homepage", method = RequestMethod.POST)
+	public String percorso(HttpServletRequest request, Percorso p, Model model) {
+		if (utenteService.isThereUtenteSession(request)) {
+			List<Mezzo> mezzi = new ArrayList<>();
+			mezzi = mezzoService.listaMezzi();
+			model.addAttribute("mezzi", mezzi);
+			
+			try {
+				percorsoService.insert(p);
+				model.addAttribute("percorso", "Percorso registrato correttamente!");
+			} catch (IllegalArgumentException iae) {
+				model.addAttribute("percorso", "ALERT: percorso non valido.");
+			}
+			
+			return "girardi/homepage";
+		} else
+			return "girardi/my_login";
+	}
+	
+
+//-------------------------------------------------------------------------------
 	@RequestMapping(value = "/girardi/register", method = RequestMethod.GET)
 	public String register( Model model) {
 		model.addAttribute("errore", "");
 		model.addAttribute("registrato", "");
-		
-		List<Mezzo> mezzi = new ArrayList<>();
-		mezzi = mezzoService.listaMezzi();
-		model.addAttribute("mezzi", mezzi);
+
 		
 		return "/girardi/register";
 	}
@@ -117,10 +149,6 @@ public class MyHomeController {
 	public String register(Utente u, Model model) {
 		model.addAttribute("errore", "");
 		model.addAttribute("registrato", "");
-		
-		List<Mezzo> mezzi = new ArrayList<>();
-		mezzi = mezzoService.listaMezzi();
-		model.addAttribute("mezzi", mezzi);
 
 		Utente utente = null;
 		try {

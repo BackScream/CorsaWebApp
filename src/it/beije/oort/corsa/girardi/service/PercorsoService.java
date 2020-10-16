@@ -26,13 +26,13 @@ public class PercorsoService {
 	@Transactional
 	public void insert(Percorso percorso) {
 		if (percorso == null) {
-			throw new IllegalArgumentException("bean utente null");
+			throw new IllegalArgumentException("bean percorso null");
 		}
 		if (!"".equals(percorso.getPartenzaGps()) || !"".equals(percorso.getArrivoGps()) ||
 			!"".equals(percorso.getPartenzaDateTime()) || !"".equals(percorso.getArrivoDateTime()) ||
 			!"".equals(percorso.getIdUtente()) || !"".equals(percorso.getIdMezzo())) {
 	
 			percorsoRepository.save(percorso);
-		} else throw new IllegalArgumentException("dati utente non presenti");
+		} else throw new IllegalArgumentException("dati percorso non presenti");
 	}
 }
