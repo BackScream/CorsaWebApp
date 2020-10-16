@@ -20,12 +20,24 @@
 		out.println("Oggi: " + now.format(f));
 		%>
 		
+		<h4>Visita lo storico delle tue corse!:<!--  <a href="./storico">storico corse</a>--></h4>
 		<br>
-		<h4>Selezionare l'operazione che si vuole eseguire:</h4>
-		<!--  
-		<a href="./libro_id">Cerca Libro tramite Id</a><br>
-		<a href="./libro_titolo">Cerca Libro tramite Titolo</a><br>
-		<a href="./visualizza_catalogo">Visualizza catalogo libri</a>
-		-->
+		<h3>Hai raggiunto un nuovo traguardo? </h3>
+		<h3>Inseriscilo nel tuo storico:</h3>
+		<form action="./homepage" method="get" name="invio" >
+		  <p>Indirizzo o coordinate GPS( "Latitudine (N), Longitudine (E)" ):</p><br>
+			PARTENZA:&nbsp;<input type="text" name="partenzaGps" placeholder="Vinicio" required/><br>
+			ARRIVO:&nbsp;<input type="text" name="arrivoGps" placeholder="Marchioni" required/><br>
+			
+		  <p>Data e ora:</p><br>	
+			PARTENZA:&nbsp;<input type="text" name="partenzaDateTime" value="" required/><br>
+			ARRIVO:&nbsp;<input type="text" name="arrivoDateTime" value="" placeholder="" required/><br>
+			
+		  <p>MEZZO:</p>
+			MEZZO&nbsp;<input type="text" name="idMezzo" value="" required /><br>
+						
+ 			<input type="submit" value="INVIO" />
+		</form>
+
 	</body>
 </html>

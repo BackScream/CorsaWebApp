@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.beije.oort.corsa.girardi.entity.Utente;
 import it.beije.oort.corsa.girardi.service.UtenteService;
+import it.beije.oort.corsa.girardi.entity.Mezzo;
+import it.beije.oort.corsa.girardi.service.MezzoService;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -34,6 +36,9 @@ public class MyHomeController {
 
 	@Autowired
 	private UtenteService utenteService;
+	
+	@Autowired
+	private MezzoService mezzoService;
 	
 	
 	@RequestMapping(value = "/girardi/", method = RequestMethod.GET)
@@ -100,6 +105,11 @@ public class MyHomeController {
 	public String register( Model model) {
 		model.addAttribute("errore", "");
 		model.addAttribute("registrato", "");
+		
+		List<Mezzo> mezzi = new ArrayList<>();
+		mezzi = mezzoService.listaMezzi();
+		model.addAttribute("mezzi", mezzi);
+		
 		return "/girardi/register";
 	}
 	
@@ -107,6 +117,11 @@ public class MyHomeController {
 	public String register(Utente u, Model model) {
 		model.addAttribute("errore", "");
 		model.addAttribute("registrato", "");
+		
+		List<Mezzo> mezzi = new ArrayList<>();
+		mezzi = mezzoService.listaMezzi();
+		model.addAttribute("mezzi", mezzi);
+
 		Utente utente = null;
 		try {
 			Optional<Utente> user = utenteService.findByEmail(u.getEmail());
@@ -119,6 +134,8 @@ public class MyHomeController {
 								+ "questa email.");	
 		} catch (NoSuchElementException nsee) {
 			model.addAttribute("registrato", "Ti sei registrato correttamente!");
+			String email = u.getEmail().toLowerCase();
+			u.setEmail(email);
 			utenteService.insert(u);
 		} finally {
 			return "/girardi/register";
