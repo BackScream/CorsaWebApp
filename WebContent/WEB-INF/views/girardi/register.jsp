@@ -10,7 +10,7 @@
 	<body>
 		<h2><em>"Corri quando puoi, cammina quando devi, striscia se serve; ma non mollare mai."</em></h2>
 
-	 	<h4>Entra a far parte della Biblioteca!</h4>
+	 	<h4>Entra a far parte del team!</h4>
 	 	
 	 	<h4 style="color:rgb(255, 0, 0);"> ${errore} </h4>
 	 	<h4 style="color:rgb(0, 255, 0);"> ${registrato} </h4>

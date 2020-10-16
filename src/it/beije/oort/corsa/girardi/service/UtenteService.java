@@ -13,14 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import it.beije.oort.corsa.girardi.entity.Utente;
 import it.beije.oort.corsa.girardi.repository.UtenteRepository;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 
 @Service
 public class UtenteService {
 	
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+//	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private UtenteRepository utenteRepository;
@@ -60,7 +60,7 @@ public class UtenteService {
 			!"".equals(utente.getEmail()) || !"".equals(utente.getPassword())) {
 	
 			utenteRepository.save(utente);
-			log.info("utente inserito!");
+//			log.info("utente inserito!");
 		} else throw new IllegalArgumentException("dati utente non presenti");
 	}
 	
