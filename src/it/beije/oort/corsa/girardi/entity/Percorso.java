@@ -84,6 +84,10 @@ public class Percorso {
 	public void setArrivoDateTime(String arrivoDateTime) {
 		this.arrivoDateTime = arrivoDateTime;
 	}
+	
+	public Integer getIdUtente() {
+		return idUtente;
+	}
 
 	public void setIdUtente(Integer idUtente) {
 		this.idUtente = idUtente;
@@ -92,6 +96,7 @@ public class Percorso {
 	public Integer getIdMezzo() {
 		return idMezzo;
 	}
+
 	public void setIdMezzo(Integer idMezzo) {
 		this.idMezzo = idMezzo;
 	}
