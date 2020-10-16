@@ -3,14 +3,10 @@ package it.beije.oort.corsa.girardi.controller;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,27 +19,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import it.beije.oort.corsa.girardi.entity.Utente;
 import it.beije.oort.corsa.girardi.service.UtenteService;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 
 
 @Controller
 public class MyHomeController {
-	
-//	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private UtenteService utenteService;
-	
-	
+
 	@RequestMapping(value = "/girardi/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, HttpServletResponse response,
 						Model model, Locale locale) throws IOException {
 		String str = login(request, response, model, locale);
 		return str;
 	}
-	
-
 	@RequestMapping(value = "/girardi/my_login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response,
 						Model model, Locale locale) throws IOException {

@@ -85,6 +85,16 @@ public class Percorso {
 		this.arrivoDateTime = arrivoDateTime;
 	}
 
+	public void setIdUtente(Integer idUtente) {
+		this.idUtente = idUtente;
+	}
+	
+	public Integer getIdMezzo() {
+		return idMezzo;
+	}
+	public void setIdMezzo(Integer idMezzo) {
+		this.idMezzo = idMezzo;
+	}
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder("percorso [");
@@ -92,7 +102,7 @@ public class Percorso {
 			.append(" - arrivoGps : ").append(this.arrivoGps)
 			.append(" - partenzaDateTime : ").append(this.partenzaDateTime)
 			.append(" - arrivoDateTime : ").append(this.arrivoDateTime)
-			.append(" - idMezzo : ").append(this.idMezzo)
+			.append(" - idUtente : ").append(this.idUtente)
 			.append(" - idMezzo : ").append(this.idMezzo)
 			.append("]");
 		
