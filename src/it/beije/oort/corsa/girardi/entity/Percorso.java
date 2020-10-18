@@ -104,7 +104,8 @@ public class Percorso {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder("percorso [");
-		builder.append("partenzaGps : ").append(this.partenzaGps)
+		builder.append("id : ").append(this.id)
+			.append(" - partenzaGps : ").append(this.partenzaGps)
 			.append(" - arrivoGps : ").append(this.arrivoGps)
 			.append(" - partenzaDateTime : ").append(this.partenzaDateTime)
 			.append(" - arrivoDateTime : ").append(this.arrivoDateTime)

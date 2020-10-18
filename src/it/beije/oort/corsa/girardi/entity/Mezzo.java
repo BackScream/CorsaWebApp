@@ -60,7 +60,8 @@ public class Mezzo {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder("mezzo [");
-		builder.append("nome : ").append(this.nome)
+		builder.append("id : ").append(this.id)
+			.append(" - nome : ").append(this.nome)
 			.append(" - descrizione : ").append(this.descrizione)
 			.append("]");
 		
