@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Storico percorsi</title>
 </head>
 <body>
 	<p>storico: <br> ${percorsi}</p>
+	<p> Clicca qui per continuare: <a href="./homepage">Homepage</a></p>
+	   	<c:forEach var = "i" items="${percorsi}">
+		    <c:out value = "${i}"/><p>
+		</c:forEach>
 </body>
 </html>

@@ -31,7 +31,7 @@ public class PercorsoService {
 		if (!"".equals(percorso.getPartenzaGps()) || !"".equals(percorso.getArrivoGps()) ||
 			!"".equals(percorso.getPartenzaDateTime()) || !"".equals(percorso.getArrivoDateTime()) ||
 			!"".equals(percorso.getIdUtente()) || !"".equals(percorso.getIdMezzo())) {
-	
+					System.out.println(percorso);
 			percorsoRepository.save(percorso);
 		} else throw new IllegalArgumentException("dati percorso non presenti");
 	}

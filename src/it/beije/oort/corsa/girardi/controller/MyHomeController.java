@@ -69,7 +69,8 @@ public class MyHomeController {
 			
 			request.getSession().setAttribute("utente", utente);
 			model.addAttribute("utente", utente);	
-			return "girardi/passaggio";
+//			return "girardi/passaggio";
+			return "girardi/homepage";
 		}
 	}
 	
@@ -87,6 +88,7 @@ public class MyHomeController {
 
 			return "girardi/homepage";
 		} else
+			model.addAttribute("errore", "Occore fare il login");
 			return "girardi/my_login";
 	}
 
@@ -97,20 +99,27 @@ public class MyHomeController {
 			List<Mezzo> mezzi = new ArrayList<>();
 			mezzi = mezzoService.listaMezzi();
 			model.addAttribute("mezzi", mezzi);
-			
+						System.out.println("percorso");
 			try {
+						System.out.println(p);
+				//aggiungo l' idUtente:
+				Utente u = (Utente) request.getSession().getAttribute("utente");
+				p.setIdUtente(u.getId());
+				//inserisce il percorso:
 				percorsoService.insert(p);
+				
 				model.addAttribute("errore", "Percorso registrato correttamente!");
+						System.out.println("percorso registrato");
 			} catch (IllegalArgumentException iae) {
+						System.out.println("percorso non valido");
 				model.addAttribute("errore", "ALERT: percorso non valido.");
 			}
 			
 			return "girardi/homepage";
-		} else
+		} else {
+			model.addAttribute("errore", "Occore fare il login");
 			return "girardi/my_login";
+		}
 	}
-	
-
 //-------------------------------------------------------------------------------
-
 }

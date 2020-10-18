@@ -42,6 +42,7 @@ public class PercorsoController {
 			return "girardi/storico";
 		} else {
 			 
+			model.addAttribute("errore", "Occore fare il login");
 			return "girardi/my_login";
 		}
 	}
