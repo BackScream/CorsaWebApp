@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Ciao ${utente.nome} ${utente.cognome}!<br> Benvenuto!</h2>
-	<p> Clicca qui per continuare: <a class="txt2" href="./homepage"> </a>
+	<p> Clicca qui per continuare: <a href="./homepage">Homepage</a></p>
 
 </body>
 </html>

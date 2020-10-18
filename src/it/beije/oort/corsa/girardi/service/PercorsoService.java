@@ -18,8 +18,8 @@ public class PercorsoService {
 	private PercorsoRepository percorsoRepository;
 
 	public List<Percorso> findByIdUtente(Integer id) {
-		List<Percorso> percorso = percorsoRepository.findByIdUtente(id);
-	return percorso;
+		List<Percorso> percorsi = percorsoRepository.findByIdUtente(id);
+	return percorsi;
 	}
 	
 	

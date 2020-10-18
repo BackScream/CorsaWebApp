@@ -17,7 +17,7 @@
 		<h4 style="color:rgb(255, 0, 0);"> ${errore} </h4>
 	 
 		<br><h3>Inserisci le tue credenziali</h3>
-		<form action="./homepage" method="post">
+		<form action="./passaggio" method="post">
 			EMAIL&nbsp;<input type="email" name="email" value="" placeholder="user@domain.it"/><br/>
  			PASSWORD&nbsp;<input type="password" name="password" value=""/><br>
 			<input type="submit" value="INVIO"/>

@@ -22,6 +22,8 @@
 		
 		<h4>Visita lo storico delle tue corse!:<!--  <a href="./storico">storico corse</a>--></h4>
 		<br>
+		<h2>${errore}</h2>
+		
 		<h3>Hai raggiunto un nuovo traguardo? </h3>
 		<h3>Inseriscilo nel tuo storico:</h3>
 		<form action="./homepage" method="get" name="invio" >

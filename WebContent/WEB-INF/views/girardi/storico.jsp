@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<p>storico: <br> ${percorsi}</p>
 </body>
 </html>

@@ -45,34 +45,9 @@ public class MyHomeController {
 	@Autowired
 	private PercorsoService percorsoService;
 	
-	
-	@RequestMapping(value = "/girardi/", method = RequestMethod.GET)
-	public String home(HttpServletRequest request, HttpServletResponse response,
-						Model model, Locale locale) throws IOException {
-		String str = login(request, response, model, locale);
-		return str;
-	}
+
 	
 
-	@RequestMapping(value = "/girardi/my_login", method = RequestMethod.GET)
-	public String login(HttpServletRequest request, HttpServletResponse response,
-						Model model, Locale locale) throws IOException {
-//		log.info("login..." + request.getContextPath());
-		
-		
-		LocalDateTime today = LocalDateTime.now();
-		DateTimeFormatter f = DateTimeFormatter.ofPattern("dd - MMMM - yyyy, hh:mm");
-//		log.info(f.format(today));
-		model.addAttribute("today", f.format(today));
-		model.addAttribute("country", locale.getCountry());
-		model.addAttribute("lingua", locale.getLanguage());
-		
-		model.addAttribute("errore", "");
-		
-		return "girardi/my_login";
-	}
-	
-	
 	@RequestMapping(value = "/girardi/passaggio", method = RequestMethod.POST)
 	public String utente(HttpServletRequest request, Utente u, Model model) {
 		Utente utente = null;
@@ -94,7 +69,7 @@ public class MyHomeController {
 			
 			request.getSession().setAttribute("utente", utente);
 			model.addAttribute("utente", utente);	
-			return "girardi/homepage";
+			return "girardi/passaggio";
 		}
 	}
 	
@@ -108,6 +83,8 @@ public class MyHomeController {
 			mezzi = mezzoService.listaMezzi();
 			model.addAttribute("mezzi", mezzi);
 		
+			model.addAttribute("errore", "");
+
 			return "girardi/homepage";
 		} else
 			return "girardi/my_login";
@@ -135,37 +112,5 @@ public class MyHomeController {
 	
 
 //-------------------------------------------------------------------------------
-	@RequestMapping(value = "/girardi/register", method = RequestMethod.GET)
-	public String register( Model model) {
-		model.addAttribute("errore", "");
-		model.addAttribute("registrato", "");
 
-		
-		return "/girardi/register";
-	}
-	
-	@RequestMapping(value = "/girardi/register", method = RequestMethod.POST)
-	public String register(Utente u, Model model) {
-		model.addAttribute("errore", "");
-		model.addAttribute("registrato", "");
-
-		Utente utente = null;
-		try {
-			Optional<Utente> user = utenteService.findByEmail(u.getEmail());
-//			log.info(user.toString());
-			
-			utente = user.get();
-//			log.info(utente.toString());
-
-			model.addAttribute("errore", "ACCOUNT NON CREATO: un altro account ha "
-								+ "questa email.");	
-		} catch (NoSuchElementException nsee) {
-			model.addAttribute("registrato", "Ti sei registrato correttamente!");
-			String email = u.getEmail().toLowerCase();
-			u.setEmail(email);
-			utenteService.insert(u);
-		} finally {
-			return "/girardi/register";
-		}
-	}
 }
